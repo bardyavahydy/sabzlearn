@@ -1,0 +1,1551 @@
+@import "variables";
+@import "mixins";
+
+*{
+    @include universal;
+}
+
+body{
+    direction: rtl;
+    font-family: 'iranyekanwebmedium',Arial, Helvetica, sans-serif;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    font-family: 'iranyekanwebregular';
+}
+
+.section-top{
+    background-color: $bgColor;
+    padding: 5px 40px 5px 20px;
+    @include flex(flex , space-between , center ); 
+
+    a{
+        @include fontStyle($color-Links , 14px , 'iranyekanwebregular');
+        @include hoverBlue;
+    }
+}
+
+.menu-top-right , .section-top-left{
+    @include displayFlex;
+}
+
+.menu-top-right{
+    li:not(:first-child){
+        margin-right: 40px;
+    }
+
+    span{
+        display: block;
+    }
+
+    span:first-child::before{
+        content: '';
+        display: inline-block;
+        background-color: #2bce56;
+        width: 9px;
+        height: 7px;
+        border-radius: 5px;
+        margin-left: 5px;
+        opacity: 0;
+        transition: .1s;
+    }
+
+    li:hover span:first-child::before{
+        opacity: 1;
+    }
+
+    span:last-child{
+        margin-top: 5px;
+    }
+
+}
+
+.section-top-left{
+    div{
+        @include displayFlex;
+        cursor: pointer;
+    }
+
+    i{
+        color: $basecolor-Green;
+        margin-right: 5px;
+        font-size: 18px;
+    }
+    
+    .fa-phone-flip{
+        padding: 1px;
+        border: 1px solid $basecolor-Green;
+        font-size: 11px;
+        border-radius: 2px;
+        margin-left: 35px;
+
+    }
+} 
+
+.section-mid{
+    padding: 20px 36px 20px 16px;
+    @include flex(flex , space-between , center );     
+}
+
+.navigationbar{
+    @include displayFlex;
+    
+    .menus{
+        @include displayFlex;
+    }
+
+    li{
+        position: relative;
+
+        &::after , &::before{
+            content: '';
+            position: absolute;
+            right:0 ;
+            width: 0;
+            height: 3px;
+            border-radius:10px 0 0 10px ;
+        }
+
+        &::after{
+            background-color: #2bce56;
+            top: 30px;
+            transition: .7s;
+        }
+    
+        &::before{
+            background-color: #7f8187;
+            top: 35px;
+            transition: .3s;
+        }
+
+        &:hover::after{
+            width:15px;
+        }
+    
+        &:hover::before{
+            width:25px;
+        }
+    
+        &:hover .under-menu{
+            top: 43px;
+        }
+    }
+
+}
+
+.menus > li{
+    margin-right: 20px;
+
+    &:hover .under-menu{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.menus > li > a{
+    @include fontLink(#7f8187 , 16px);
+    i{
+        margin-right: 7px;
+        opacity: .7;
+        font-size: 12px;
+    }
+}
+
+.under-menu{
+    position: absolute;
+    top: 66px;
+    right: -5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.12);
+    padding: 10px 8px 20px 20px;
+    width: max-content;
+    border-bottom:3px solid $basecolor-Green ;
+    border-radius: $borderRadiusfour;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+
+    li{
+        &:not(:first-child){
+            margin-top: 13px;
+        }
+
+        &::after{
+            top: 25px;
+        }
+    
+        &::before{
+            top: 29px;
+        }
+
+    }
+
+    a{
+        margin-right: 10px;
+        font-weight: 400;
+        display: inline-block;
+        width: 100%;
+        @include fontLink($color-Links , 14px);
+        @include hoverBlue;
+    }
+}  
+
+.section-mid__left{
+    @include displayFlex;
+
+    > a{
+        display: inline-block;
+        border-radius: $borderRadiusfour;
+        transition: .5s;
+        @include elementAlignment(46px , 46px , 46px);
+
+    > i{
+        font-size: 20px;
+    }
+
+    }
+
+    > a:nth-child(1){
+        background-color: $basecolor-Green;
+        color: #fff;
+    }
+
+    > a:nth-child(2){
+        background-color: $bgColor;
+        color: #7f8187;
+        margin: 0 12px;
+        position: relative;
+
+        &:hover{
+            color: $hovercolorlinks;
+        }
+
+        &::after{
+            content: '۰';
+	        position: absolute;
+	        background-color: #1e83f0;
+            color: #fff;
+            border-radius: 50%;
+            top: 5px;
+            right: 5px;
+            @include elementAlignment( 20px , 20px , 20px);
+        }
+    }
+
+}
+
+.user-name{
+    position: relative;
+    > a{
+        background-color: white;
+        border-radius: $borderRadiusfour;
+        width: 141px;
+        height: 46px;
+        border: 2px solid $basecolor-Green;
+        transition: .5s;
+        @include fontLink($basecolor-Green , 16px);
+        @include flex( flex , center , center );
+
+        &:hover{
+            background-color: $basecolor-Green;
+            color: #fff;
+        }
+
+    }
+
+    &:hover ul{
+        visibility: visible;
+        opacity: 1;
+    }
+
+    ul{
+        background-color: #fff;
+        box-shadow: 0 0 19px -6px #0000002e;
+        border-radius: 5px;
+        padding: 10px 0;
+        min-width: 220px;
+        position: absolute;
+        left: 0;
+        top: 50px;
+        visibility: hidden;
+        opacity: 0;
+        transition: .5s;
+
+        li{
+            padding: 10px;
+            transition: .5s;
+
+            &:hover{
+                background-color: rgba(193, 202, 209, 0.282);
+            }
+
+            &:last-of-type i{
+                color: red;
+            }
+        }
+
+        a{
+            @include fontLink(#7f8187 , 14px);
+            @include displayFlex;
+        }
+    }
+
+    i{
+        font-size: 19px;
+        margin-left: 10px;
+    }
+}
+
+.container-menu-hamburger{
+    display: none;
+    margin-right: 12px;
+
+    .fa-bars , .fa-xmark{
+        display: inline-block;
+        background: #f0f2f7;
+        border-radius: $borderRadiusfour;
+        font-size: 20px;
+        cursor: pointer;
+        @include elementAlignment( 32px , 32px , 32px);
+    }
+
+    &:hover .fa-bars , .fa-xmark{
+        display: none;
+    }
+
+    &:hover .fa-xmark{
+        display: inline-block;
+    }
+
+    .menu-hamburger{
+        position: fixed;
+        top: 0px;
+        right: -300px;
+        bottom: 0;
+        background-color: #212529;
+        width: 300px;
+        padding: 24px 20px 0;
+        transition: .5s;
+    }
+
+    &:hover .menu-hamburger{
+        right: 0;
+    }
+    
+}
+
+.menu-hamburger{
+    li{
+        margin: 6px 0 14px;
+
+        &:hover .right-menu {
+            display: block;
+        }
+    }
+
+    input{
+        background-color: rgba(0,0,0,.3);
+        border-color: transparent;
+        display: inline-block;
+        width: 100%;
+        padding: 12px 15px 12px 0;
+        border-radius: $borderRadiusfour;
+        margin-bottom: 24px;
+        &::placeholder{
+        @include fontStyle($color-Formaster , 14px , 'iranyekanwebmedium');
+        }
+    }
+
+    > li > a{
+        @include fontStyle(#fff , 15px , 'iranyekanwebmedium');
+
+    }
+
+    i{
+        transform: rotateZ(90deg);
+        color: $color-Formaster;
+        font-size: 12px;
+        cursor: pointer;
+        transition: .2s;
+        &:hover{
+            transform: rotateZ(0deg);
+        }
+
+    }
+    
+    li:nth-child(3) i{
+            margin-right: 170px;
+    }
+
+    li:nth-child(4) i{
+            margin-right: 186px;
+    }
+
+    li:nth-child(5) i{
+            margin-right: 183px;
+    }
+
+    li:nth-child(6) i{
+            margin-right: 182px;
+    }
+    
+}
+
+.right-menu {
+    border-right: 1.5px solid $basecolor-Green;
+    padding: 5px 10px 5px 0;
+    margin: 5px 0;
+    display: none;
+
+   a{
+    @include fontLink(#858585 , 14px);
+   }
+}
+
+// section-bottom
+
+.section-bottom{
+    background: url(/image/bgimage.jpeg);
+    color: #fff;
+
+    .container-search-box{
+        max-width: 813px;
+        height: 567.5px;
+        margin: 0 auto;
+        @include flex( flex , center , center);
+        flex-direction: column;
+    }
+
+    h1{
+        font-size: 35px;
+        font-weight: 700;
+        color: #fff;
+        text-align: center;
+    }
+
+    p{
+        font-weight: 300;
+        font-size: 18px;
+        margin: 13px 0 27px;
+        text-align: center;
+    }
+
+    .search-box{
+        background-color: #fff;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 11px;
+    }
+
+    input{
+        border: none;
+        outline: none;
+        width: 85%;
+        margin-right: 30px;
+        &::placeholder{
+            @include fontStyle($color-Formaster , 15px , 'iranyekanwebregular');
+        }
+    }
+
+    i{
+        @include elementAlignment( 60px , 60px , 60px );
+        display: inline-block;
+        background-color: $basecolor-Green;
+        margin: 5px 0 5px 5px;
+        color: white;
+        border-radius: $borderRadiusfour * 2;
+        font-size:20px ;
+        cursor: pointer;
+    }
+}
+
+// main
+
+main{
+    a:not(.all-course , .all-content){
+        @include hoverBlue;
+    }
+}
+
+.container{
+    width: 1140px;
+    margin: 60px auto 50px;
+}
+
+article:not(:first-child){
+    margin-top: 70px;
+}
+
+.container-thelatest-courses__title{
+    @include flex(flex , space-between , center );
+}
+
+.latest-courses-title , .container-help-title , .popular-courses-title , .Pre-sale-courses__title{
+    margin-right: 14px;
+    position: relative;
+    &::before{
+        @include positionAbsolute(absolute , $basecolor-Green);
+        right: -7px;
+        height: 80%;
+        width: 4px;
+        transform: translateY(13px) rotateZ(15deg);
+        border-radius: $borderRadiusfour;
+    }
+}
+
+.title-main{
+    color: #444446;
+    font-size: 25px;
+    font-weight: 600;
+    width: fit-content;
+    position: relative;
+    &::before{
+        @include positionAbsolute(absolute , $basecolor-Green);
+        opacity: .3;
+        position: absolute;
+        width: 100%;
+        height: 15px;
+        bottom: 4px;
+    }
+}
+
+.text-main{
+    @include fontStyle(#9c9c9c , 16px , 'iranyekanwebregular');
+    padding-right: 16px;
+    margin: 3px 0 0;
+}
+
+.container-thelatest-courses__title , .the-best-articles__title{
+    div:last-child{
+        background-color: #0fc66c;
+        border-radius: $borderRadiusfour + 1px;
+        color: #fff;
+        padding: 7px 18px;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    a{
+        @include fontLink(#fff , 13px);
+    }
+
+}
+
+.courses{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 80px 0 0;
+}
+
+.all-courses{
+    @include hoverTranslate;
+}
+
+.course{
+    @include styleCourse;
+    width: 32%;
+    &:hover .off{
+    animation: off 2s ease infinite alternate;
+    }
+
+    &:nth-child(4) , &:nth-child(5) , &:nth-child(6){
+        margin: 80px 0;
+    }
+
+    .course__text-content{
+        padding: 0 15px 15px;
+    }
+
+    a{
+        @include hoverBlue;
+    }
+}
+
+.off{
+    background-color: $basecolor-Green;
+    color: #fff;
+    border-radius: 17px;
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    left: 7px;
+    top: -75px;
+    z-index: 2;
+    transform: rotateZ(-20deg);
+    text-align: center;
+
+    span{
+        font: 20px 'YekanBakhMedium';
+    }
+
+    p{
+        font: 13px 'YekanBakhMedium';
+    }
+}
+
+.course-img{
+    width: calc(100% - 43.8px);
+    min-height: 161px;
+    margin: 0 21.9px;
+
+    img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        position: relative;
+        top: -60px;
+    }
+}
+
+.course-info{
+        margin: 0 0 20px;
+
+        > a{
+        font-size:16px;
+        color: $color-Links;
+        display: inline-block;
+        min-height: 50px;
+    }
+
+    i{
+        font-size: 18px;
+        color: #6c757d;
+    }
+        
+    .teacher-name{
+        font-size: 11px;
+        color:$color-Formaster ;
+        display: inline-block;
+        margin-top: 15px;
+        @include hoverBlue;
+    }
+}
+
+.Number-of-students {
+    @include flex(flex , space-between , center );
+    div:first-child span{
+        font-size: 15px;
+        color: $color-Formaster;
+    }
+
+    div:last-child span{
+        font-size: 18px;
+        color: #9e9e9e;
+    }
+}
+
+.delete{
+    margin-left: 23px;
+    position: relative;
+
+    &::after , &:before{
+        @include positionAbsolute(absolute , #9e9e9e);
+    } 
+
+    &::after{
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 1px;
+        border-radius: 2px;
+        transform: rotateZ(-19deg);
+        transform-origin: left bottom;
+    }
+
+    &::before{
+        bottom: 12px;
+        right: 70px;
+        width: 10px;
+        height: 1px;
+    }
+}
+
+.more-info {
+    padding: 14px 22px;
+    border-top: 1px solid #ebebeb;
+    text-align: center;
+    
+    a{
+        @include fontLink($basecolor-Green , 15px);
+        display: inline-block;
+        width: 80%;
+        margin: 0 auto;
+        &:hover i{
+            color: $hovercolorlinks;
+        }
+    }
+
+    i{
+        color: $basecolor-Green;
+        font-size: 13px;
+        transition: .5s;
+    }  
+}
+
+// special courses
+
+.special-courses{
+    @include styleCourse;
+    @include displayFlex;
+
+    &::after , &::before{
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 30px;
+        z-index: -1;
+    }
+    
+    &::after{
+        transform: rotate(-11deg);
+        background-color: $basecolor-Green;
+        left: 0;
+        bottom: 0;
+    }
+
+    &::before{
+        transform: rotate(20deg);
+        background: rgba(150,166,212,.1);
+        right: 0;
+        top: 0;
+    }
+}
+
+.special-courses__container-right{
+    display: flex;
+    overflow: hidden;
+    width: 70%;
+}
+
+.special-course{
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    animation: special-course 10s linear infinite alternate;
+}
+
+.special-course__img{
+    flex-shrink: 0;
+    width: 280px;
+    height: 208px;
+    margin-right: 15px;
+    
+    img{
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.special-course__text-info{
+    width: calc(100% - 280px);
+    padding-right: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    a{
+        @include fontLink(#000 , 20px);
+    }
+
+    span{
+        display: inline-block;
+        @include fontStyle(#fff , 16px , 'iranyekanwebregular');
+        background: #41bc44;
+        border-radius: 5px;
+        padding: 5px 12px;
+        margin-top: 20px;
+        width: max-content;
+    }
+}
+
+.special-course__left{
+    width: 30%;
+    padding: 15px;
+}
+
+.special-course__left__list-items{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px 10px 10px 0;
+
+    a{
+        @include fontLink(#393939 , 14px);
+    }
+}
+
+.special-course__item-img{
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    flex-shrink: 0;
+    
+    img{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// helps
+
+.container-help{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+    margin-top: 20px
+}
+
+.help{
+    @include displayFlex;
+    border-radius: $borderRadiusfour * 2;
+    box-shadow: $boxShadow;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.help-img{
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    margin: 0 0 0 10px;
+
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.help-text{
+    h3{
+    @include fontStyle(#000 , 18px , 'iranyekanwebmedium');
+    margin: 0 0 5px 0;
+    }
+
+    span{
+    @include fontStyle(#050505 , 15px , 'iranyekanwebregular');
+    }
+}
+
+// popular-courses
+
+.popular-courses , .Pre-sale-courses{
+    overflow: hidden;
+    padding-right: 10px;
+}
+
+.container-popular-course , .container-Pre-sale__courses{
+    display: grid;
+    grid-template-columns: repeat(5,346px);
+    column-gap: 35px;
+    padding: 100px 10px 15px;
+}
+
+.popular-course{
+    @include course;
+    animation: popular-course 10s linear infinite alternate;
+    .course__text-content{
+        padding: 0 15px 15px;
+    }
+
+    &:nth-child(1) , &:nth-child(2) , &:nth-child(4){
+        .delete{
+            &::after{ 
+                transform: rotateZ(-24deg);
+            }
+        
+            &::before{
+                right: 56px;
+            }
+        }
+    }
+}
+
+.container-circle{
+    text-align:center;
+
+    span{
+        background-color: $basecolor-Green;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%
+    }
+
+    // span:first-child{
+    //     animation: circle-go 10s linear infinite;
+    // }
+}
+
+// Pre-sale-courses
+
+.container-Pre-sale__courses{
+    display: grid;
+    grid-template-columns: repeat(3,346px);
+    column-gap: 35px;
+    padding: 100px 10px 15px;
+}
+
+.Pre-sale-course{
+    @include course;
+
+    .course__text-content{
+        padding: 0 15px 15px;
+    }
+}
+
+// the-best-articles
+
+.triangles{
+    position: relative;
+    div{
+        @include positionAbsolute(absolute , $basecolor-Green);
+        clip-path: polygon(0 0, 50% 100%, 100% 0);
+        opacity: .1;
+        z-index: -1;
+    }
+    
+    div:first-child{
+        width: 600px;
+        height: 300px;
+        left:calc(50% - 300px);
+        top: 29px;
+    }
+
+    div:last-child{
+        width: 400px;
+        height: 200px;
+        left:calc(50% - 200px);
+        top: 6px;
+    }
+}
+
+.the-best-articles__title{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    height: 120px;
+
+    span{
+        @include fontStyle(#444 , 24px , 'iranyekanwebregular');
+        font-weight: 400;
+    }
+
+    div{
+        width: fit-content;
+        align-self: flex-end;
+    }
+}
+
+.container-the-best-articles{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+    padding: 0 10px;
+    margin-top: 20px;
+}
+
+.the-best-article{
+    overflow: hidden;
+    border-radius: $borderRadiusfour;
+    background-color: #fff;
+    box-shadow: 0 5px 30px rgba(70 , 72 , 77 , 8%);
+    transition: .5s;
+    &:hover{
+		transform: translateY(-10px); 
+        span{
+            color: #fff;
+            background-color: $basecolor-Green;
+        }
+    }
+}
+
+.best-article-img{
+    border-bottom: 1px solid rgba(224, 223, 223, 0.455);
+    
+    img{
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.best-article-text{
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+
+    h3{
+        min-height: 55px;
+
+        a{
+            @include fontLink($color-Links , 16px);
+            @include hoverBlue;
+            font-weight: 600;
+            letter-spacing: -.5px;
+            line-height: 26px;
+        }
+    }
+
+    p{
+        @include fontStyle(#898989 , 12px , 'iranyekanwebregular');
+        height: 45px;
+        line-height: 18px;
+        margin: 10px 0 15px;
+    }
+
+    span{
+        @include fontStyle($basecolor-Green , 14px , 'iranyekanwebregular');
+        display: inline-block;
+        padding: 2px 8px;
+        border: 2px solid $basecolor-Green;
+        border-radius: $borderRadiusfour;
+        align-self: flex-end;
+        transition: .5s;
+    }
+}
+
+// footer
+
+.footer{
+    width: 1170px;
+    background-color: #f0f2f7;
+    border-radius: 10px;
+    padding: 40px 35px;
+    margin: 100px auto 0;
+    display: flex;
+    position: relative;
+
+    &::after{
+        @include positionAbsolute(absolute , $basecolor-Green);
+        left: calc(50% - 234px);
+        bottom: -15px;
+        width: 468px;
+        height: 15px;
+        border-radius: 0 0 20px 20px;
+    }
+
+    div{
+        width: 376px;
+    }
+
+    h4{
+        @include fontStyle($color-Links , 18px , 'iranyekanwebregular');
+        padding: 12px 0 24px 0;
+        position: relative;
+
+        &::before{
+            @include positionAbsolute(absolute , $basecolor-Green);
+            top: 8px;
+            right: 0px;
+            opacity: .3;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            transform: rotateZ(45deg);
+        }
+    }
+    
+    a{
+        @include fontStyle($color-Links , 16px , 'YekanBakhMedium');
+        &:hover{
+            @include hoverBlue;
+        }
+    }
+
+}
+
+.about-us{
+    p{
+        @include fontStyle(#7d7e7f , 16px , 'YekanBakhMedium');
+        text-align: justify;
+    }
+}
+
+.the-latest-content{
+    padding: 0 30px;
+
+    li{
+        padding: 7px 0;
+    }
+}
+
+.quick-access{
+    nav{
+        display: flex;
+    }
+
+    li{
+        margin-bottom: 10px;
+        transition: .3s;
+        position: relative;
+        
+        &:before{
+            @include positionAbsolute(absolute , $basecolor-Green);
+            top: 10px;
+            right: 0;
+            height: 3px;
+            width: 0;
+            transition: .5s;
+        }
+        
+        &:hover{
+            padding-right: 20px;
+            &::before{
+                width: 13px;
+            }
+        }
+
+        a{
+            display: block;
+            width: 100%;
+        }
+    }
+
+    ul:first-child{
+        width: 60%;
+    }
+
+    p:first-of-type{
+        margin-bottom: 10px;
+    }
+}
+
+// copyright
+
+.copy-right{
+    background: url(/image/bg-card.svg);
+    padding: 20px 0 30px ;
+    margin-top: 45px;
+
+    p{
+        @include fontStyle(#777 , 16px , 'iranyekanwebregular');
+        width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+@include query(1200px){
+    .menus > li > a{
+        font-size:15px;
+    }
+
+    .footer{
+        width: calc(100% - 79px);
+        margin: 0 39.5px;
+
+        &::after{
+            width: 50%;
+            left: 25%;
+        }
+    } 
+    
+    .copy-right{
+    
+        p{
+            width: calc(100% - 30px);
+            margin: 0 15px;
+        }
+    }
+}
+
+// go-up
+
+.go-up{
+    position: fixed;
+    left: 0;
+    bottom: 20px;
+    @include elementAlignment( 36px , 36px , 36px );
+    border-radius: 0 8px 8px 0;
+    background-color: rgba(24,25,27,.25);
+    transition: .5s;
+    
+    a{
+        color: #fff;
+    }
+
+    &:hover{
+        background-color: $hovercolorlinks;
+    }
+}
+
+@include query(1170px){
+    .container{
+        width: calc(100% - 60px);
+        margin: 60px 30px 50px;
+    } 
+
+}
+
+@include query(1024px){
+    .container-search-box{
+
+        h1{
+            font-size: 23px;
+        }
+    
+        p{
+            font-size: 16px;
+        }
+    }    
+}
+
+@include query(992px){
+    .section-top{
+        justify-content: center;
+        padding: 17.5px 40px 17.5px 20px;
+
+        a{
+            font-size: 12px;
+        }
+    }
+
+    .menu-top-right{
+        display: none;
+    }
+
+    .navigationbar .menus{
+        display: none;
+    }
+
+    .section-mid__left{
+
+        > a{
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+
+           > i{
+                font-size: 17px;
+            }
+        }
+
+        a:nth-child(2){
+    
+            &::after{
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                top: 2px;
+                right: 2px;
+            }
+        }   
+    }
+
+    .user-name{
+        > a{
+            width: 32px;
+            height: 32px;
+
+            span{
+                display: none;
+            } 
+        }
+
+        ul{
+            top: 40px;
+        }
+    }    
+
+    .container-menu-hamburger{
+        display: block;
+    }
+
+    .section-bottom {
+        .search-box{
+            width: calc(100% - 30px);
+            margin: 0 15px;
+        }
+    }
+
+    .course{
+        width: 49%;
+       
+        &:nth-child(4) , &:nth-child(5) , &:nth-child(6){
+            margin:  0;
+        }
+
+        &:not(:last-child){
+            margin: 0 0 80px 0;
+        }
+    }
+
+    .special-courses{
+    
+        &::after , &::before{
+            width: 190px;
+            height: 190px;
+        }
+    }
+
+    .special-courses__container-right{
+        width: 100%;
+        border-radius: $borderRadiusfour * 2;
+    }   
+    
+    .special-course__img{
+        margin: 15px 15px 15px 0;
+    }    
+    .special-course__left{
+        display: none;
+    }
+
+    .help{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .help-img{
+        margin: 0 0 10px 0;
+    }
+
+    .container-popular-course{
+        padding: 100px 24px 15px;
+    }  
+    
+    .container-popular-course{
+        grid-template-columns: repeat(5,50%);
+        column-gap: 24px;
+    }
+
+    .container-Pre-sale__courses{
+        grid-template-columns: 1fr 1fr;
+        row-gap: 80px ;
+    }
+
+    .container-the-best-articles{
+        grid-template-columns: repeat(2,1fr);
+    }  
+    
+    .footer{
+        flex-direction: column;
+
+        div{
+            width: 100%;
+        }
+    }
+
+    .the-latest-content {
+        padding: 0;
+        margin: 70px 0;
+    }
+
+    .copy-right{
+    
+        p{
+            text-align: center;
+        }
+    }
+
+}
+
+@include query(768px){
+    .container{
+        width: calc(100% - 200px);
+        margin: 60px 100px 50px;
+    }
+
+    .container-search-box h1 {
+        margin: 15px;
+    }
+
+    .container-search-box p {
+        margin: 13px 15px 27px;
+    }
+    .course{
+        width: 100%;
+
+        &:not(:last-child){
+            margin: 0 0 80px 0;
+        }
+    }
+
+    .course-info{
+        text-align: center;
+
+        > a{
+            font-size: 20px;
+        }
+
+        i{
+            font-size: 20px;
+        }
+
+        .teacher-name{
+            font-size: 15px;
+        }
+
+    }
+
+    .special-course{
+        flex-direction: column;
+    }
+
+    .special-courses__container-right {
+        padding-bottom: 20px;
+    }
+
+    .special-course__img{
+        width: 80%;
+        margin: 25px 15px 20px 0;
+    }   
+    
+    .special-course__text-info{
+        width: 100%;
+        padding-right: 15px;
+    }
+
+    .container-help{
+        grid-template-columns: 1fr;
+    }
+
+    .help:nth-child(3){
+        grid-row: 2/3;
+        grid-column: 1/2;
+    }
+
+    .container-popular-course{
+        grid-template-columns: repeat(5,100%);
+        column-gap: 35px;
+    }
+
+    .container-Pre-sale__courses{
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 80px ;
+    }
+
+    .container-the-best-articles{
+        grid-template-columns: 1fr;
+        column-gap: 0;
+    } 
+
+    .triangles{
+        display: none;
+    }
+}
+
+@include query(576px){
+    .container{
+        width: calc(100% - 100px);
+        margin: 60px 50px 50px;
+    }
+}
+
+@include query(455px){
+    .container-thelatest-courses__title {
+        flex-direction: column;
+        height: 125px;
+        margin-bottom: 105px;
+    }
+
+    .latest-courses-title  {
+        align-self: flex-start;
+    }
+
+    div:last-child {
+        align-self: flex-end;
+    }    
+}
+
+@keyframes off{
+    0%{
+        transform: scale(1.2) rotate(40deg);
+    }
+
+    100%{
+        transform: scale(1.3) rotate(-40deg);
+
+    }
+}
+
+@keyframes special-course{
+    0%{
+        transform: translateX(0);
+    }
+    24%{
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateX( 100%);
+    }
+    49%{
+        transform: translateX( 100%);
+    }
+    50%{
+        transform: translateX( 100% * 2);
+    }
+    74%{
+        transform: translateX( 100% * 2);
+    }
+    75%{
+        transform: translateX( 100% * 3);
+    }
+    100%{
+        transform: translateX( 100% * 3);
+    }
+
+}
+
+@keyframes popular-course{
+    0%{
+        transform: translateX(0);
+    }
+    33%{
+        transform: translateX(0);
+    }
+    34%{
+        transform: translateX( calc(100% + 35px));
+    }
+    67%{
+        transform: translateX( calc(100% + 35px));
+    }
+    68%{
+        transform: translateX( calc(200% + 70px));
+    }
+    100%{
+        transform: translateX( calc(200% + 70px));
+    }
+
+}
+
+// @keyframes circle-go{
+//     0%{
+//         width: 10px;
+//     }
+//     33%{
+//         width: 10px;
+//     }
+//     34%{
+//         width: 15px;
+//     }
+//     65%{
+//         width: 15px;
+//     }
+//     67%{
+//         width: 15px;
+//     }
+//     68%{
+//         width: 15px;
+//     }
+//     79%{
+//         width: 15px;
+//     }
+//     80%{
+//         width: 10px;
+//     }
+//     100%{
+//         width: 10px;
+//     }
+// }

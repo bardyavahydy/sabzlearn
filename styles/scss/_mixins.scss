@@ -1,0 +1,102 @@
+@mixin universal{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+@mixin displayFlex{
+	display: flex;
+	align-items: center;
+}
+
+@mixin flex($flex , $justify , $align ){
+	display: $flex;
+	justify-content: $justify;
+	align-items: $align;
+}
+
+@mixin fontStyle($color , $fontSize , $fontFamily){
+	color:$color;
+	font: $fontSize $fontFamily;
+}
+
+@mixin fontLink($color , $fontSize){
+	color:$color;
+	font-size: $fontSize;
+}
+
+@mixin hoverBlue{
+	transition: .5s;
+	&:hover{
+		color: $hovercolorlinks;
+	}
+}
+
+@mixin elementAlignment($width , $height , $lineHight) {
+	width: $width;
+	height: $height;
+	line-height: $lineHight;
+	text-align: center;
+}
+
+@mixin hoverTranslate{
+	transition: .5s;
+	&:hover{
+		transform: translateY(-10px);
+	}
+}
+
+@mixin course{
+	position: relative;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 19px rgba(168 , 172 , 185 , .3);
+    &:hover .off{
+    animation: off 2s ease infinite alternate;
+    }
+}
+
+@mixin positionAbsolute($position , $backgroundColor) {
+	content: '';
+	position: $position;
+	background-color: $backgroundColor;
+}
+
+@mixin styleCourse{
+	position: relative;
+    box-shadow: $boxShadow;
+    background-color: #fff;
+    border-radius: $borderRadiusfour * 2;
+}
+
+@mixin query ($width){
+	@if ($width == 1200px){
+		@media (max-width:1200px){
+			@content;
+		}
+	}@else if ($width == 1170px){
+		@media (max-width:1170px){
+			@content;
+		}
+	}@else if ($width == 1024px){
+		@media (max-width:1024px){
+			@content;
+		}
+	}@else if ($width == 992px){
+		@media (max-width:992px){
+			@content;
+		}
+	}@else if ($width == 768px){
+		@media (max-width:768px){
+			@content;
+		}
+	}@else if ($width == 576px){
+		@media (max-width:576px){
+			@content;
+		}
+	}@else if ($width == 455px){
+		@media (max-width:455px){
+			@content;
+		}
+	}
+}
