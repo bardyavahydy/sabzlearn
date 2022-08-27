@@ -334,7 +334,9 @@ a {
     border: none;
     outline: none;
     width: 85%;
-    margin-right: 30px; }
+    margin-right: 30px;
+    font-size: 17px;
+    font-family: 'iranyekanwebregular'; }
     .section-bottom input::placeholder {
       color: #6c757d;
       font: 15px "iranyekanwebregular"; }
@@ -676,6 +678,8 @@ article:not(:first-child) {
   animation: popular-course 10s linear infinite alternate; }
   .popular-course:hover .off {
     animation: off 2s ease infinite alternate; }
+  .popular-course:not(:last-child) {
+    margin-left: 25px; }
   .popular-course:not(:last-child) {
     margin-left: 25px; }
   .popular-course .course__text-content {

@@ -448,6 +448,8 @@ a{
         outline: none;
         width: 85%;
         margin-right: 30px;
+        font-size: 17px;
+        font-family: 'iranyekanwebregular';
         &::placeholder{
             @include fontStyle($color-Formaster , 15px , 'iranyekanwebregular');
         }
@@ -839,7 +841,7 @@ article:not(:first-child){
 
 // popular-courses
 
-.popular-courses {
+.popular-courses{
     overflow: hidden;
     padding-right: 10px;
 }
@@ -853,6 +855,11 @@ article:not(:first-child){
     flex-basis: 32%;
     flex-shrink: 0;
     @include course;
+
+    &:not(:last-child){
+        margin-left: 25px;
+    }
+
     animation: popular-course 10s linear infinite alternate;
 
     &:not(:last-child){
