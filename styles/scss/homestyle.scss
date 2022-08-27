@@ -839,21 +839,26 @@ article:not(:first-child){
 
 // popular-courses
 
-.popular-courses , .Pre-sale-courses{
+.popular-courses {
     overflow: hidden;
     padding-right: 10px;
 }
 
-.container-popular-course , .container-Pre-sale__courses{
-    display: grid;
-    grid-template-columns: repeat(5,346px);
-    column-gap: 35px;
+.container-popular-course {
+    display: flex;
     padding: 100px 10px 15px;
 }
 
 .popular-course{
+    flex-basis: 32%;
+    flex-shrink: 0;
     @include course;
     animation: popular-course 10s linear infinite alternate;
+
+    &:not(:last-child){
+        margin-left: 25px;
+    }
+
     .course__text-content{
         padding: 0 15px 15px;
     }
@@ -1136,6 +1141,26 @@ article:not(:first-child){
     }
 }
 
+// go-up
+
+.go-up{
+    position: fixed;
+    left: 0;
+    bottom: 20px;
+    @include elementAlignment( 36px , 36px , 36px );
+    border-radius: 0 8px 8px 0;
+    background-color: rgba(24,25,27,.25);
+    transition: .5s;
+    
+    a{
+        color: #fff;
+    }
+
+    &:hover{
+        background-color: $hovercolorlinks;
+    }
+}
+
 @include query(1200px){
     .menus > li > a{
         font-size:15px;
@@ -1160,32 +1185,15 @@ article:not(:first-child){
     }
 }
 
-// go-up
-
-.go-up{
-    position: fixed;
-    left: 0;
-    bottom: 20px;
-    @include elementAlignment( 36px , 36px , 36px );
-    border-radius: 0 8px 8px 0;
-    background-color: rgba(24,25,27,.25);
-    transition: .5s;
-    
-    a{
-        color: #fff;
-    }
-
-    &:hover{
-        background-color: $hovercolorlinks;
-    }
-}
-
 @include query(1170px){
     .container{
         width: calc(100% - 60px);
         margin: 60px 30px 50px;
     } 
 
+    .container-Pre-sale__courses{
+        grid-template-columns: repeat(3,1fr);
+    }
 }
 
 @include query(1024px){
@@ -1314,10 +1322,13 @@ article:not(:first-child){
         padding: 100px 24px 15px;
     }  
     
-    .container-popular-course{
-        grid-template-columns: repeat(5,50%);
-        column-gap: 24px;
-    }
+    .popular-course{
+        flex-basis: 50%;
+
+        &:not(:last-child){
+            margin-left: 22px;
+        }
+    }    
 
     .container-Pre-sale__courses{
         grid-template-columns: 1fr 1fr;
@@ -1415,9 +1426,11 @@ article:not(:first-child){
         grid-column: 1/2;
     }
 
-    .container-popular-course{
-        grid-template-columns: repeat(5,100%);
-        column-gap: 35px;
+    .popular-course{
+        flex-basis: 100%;
+        &:not(:last-child){
+            margin-left: 32px;
+        }
     }
 
     .container-Pre-sale__courses{
